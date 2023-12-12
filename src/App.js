@@ -2,6 +2,7 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./container/Home";
+import { jwtDecode } from "jwt-decode";
 
 function App() {
   return (
