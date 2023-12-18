@@ -12,13 +12,16 @@ function Login() {
   const navigate = useNavigate();
   const responseGoogle = (credentialResponse) => {
     const credentialResponseDecoded = jwtDecode(credentialResponse.credential);
+    const uuid = uuidv4();
+    credentialResponseDecoded.googleId = uuid;
+
     localStorage.setItem("user", JSON.stringify(credentialResponseDecoded));
-    const { name, aud, picture } = credentialResponseDecoded;
+    const { name, azp, picture } = credentialResponseDecoded;
 
     console.log(credentialResponseDecoded);
-    const uuid = uuidv4();
+
     const doc = {
-      _id: uuid,
+      _id: azp,
       _type: "user",
       userName: name,
       image: picture,
